@@ -1,5 +1,6 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const dbConfig = require("../config/db.config");
+const syncModels = require("../models/index");
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
@@ -16,10 +17,15 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 const dbConnection = async () => {
   try {
     await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-}
 
-module.exports = dbConnection;
+    await syncModels(sequelize);
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+};
+
+module.exports = {
+  sequelize,
+  DataTypes,
+  dbConnection,
+};
