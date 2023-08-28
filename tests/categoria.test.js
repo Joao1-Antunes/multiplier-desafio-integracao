@@ -4,7 +4,7 @@ const CategoriaModel = require("../src/models/categoriaModel");
 
 const mockCategoriaData = {
   id: 1,
-  codigo: "123",
+  codigo: 123,
   titulo: "titulo",
   status: 1,
   createdAt: "2023-08-24T01:05:41.000Z",
@@ -21,7 +21,7 @@ describe("categoria", () => {
       const mockCategorias = [
         {
           id: 1,
-          codigo: "123",
+          codigo: 123,
           titulo: "titulo",
           status: 1,
           createdAt: "2023-08-24T01:05:41.000Z",
@@ -29,8 +29,8 @@ describe("categoria", () => {
         },
         {
           id: 2,
-          codigo: "124",
-          titulo: "title test",
+          codigo: 124,
+          titulo: "titulo test",
           status: 1,
           createdAt: "2023-08-26T00:14:21.000Z",
           updatedAt: "2023-08-26T00:14:21.000Z",
@@ -114,16 +114,16 @@ describe("categoria", () => {
 
       const mockUpdatedData = {
         id: 1,
-        codigo: "321",
+        codigo: 321,
         titulo: "Update Categoria",
         status: 1,
         createdAt: "2023-08-24T01:05:41.000Z",
         updatedAt: "2023-08-24T01:05:41.000Z",
       };
 
-      const mockFoundCategoria = {
+      const mockCategoriaFound = {
         id: 1,
-        codigo: "123",
+        codigo: 123,
         titulo: "Original Categoria",
         status: 1,
         createdAt: "2023-08-24T01:05:41.000Z",
@@ -131,15 +131,15 @@ describe("categoria", () => {
         update: jest.fn().mockResolvedValue(mockUpdatedData),
       };
 
-      CategoriaModel.findByPk = jest.fn().mockResolvedValue(mockFoundCategoria);
+      CategoriaModel.findByPk = jest.fn().mockResolvedValue(mockCategoriaFound);
 
       const response = await request(app).patch(`/api/categorias/${mockId}`).send(mockUpdatedData);
 
-      const { update, ...expectedCategoria } = mockFoundCategoria;
+      const { update, ...expectedCategoria } = mockCategoriaFound;
 
       expect(response.status).toBe(200);
       expect(response.body).toEqual(expectedCategoria);
-      expect(mockFoundCategoria.update).toHaveBeenCalledWith(mockUpdatedData);
+      expect(mockCategoriaFound.update).toHaveBeenCalledWith(mockUpdatedData);
     });
 
     it("should return an error if the body is a empty object and return 400 status", async () => {
@@ -181,7 +181,7 @@ describe("categoria", () => {
 
     it("should return an error message if categoria is not found and 400 status", async () => {
       const mockId = 999;
-      const errorMessage = "Categoria não encontrada!"
+      const errorMessage = "Categoria não encontrada!";
 
       CategoriaModel.findByPk = jest.fn().mockResolvedValue(null);
 

@@ -28,7 +28,11 @@ module.exports = {
   async createCategoria(req, res) {
     try {
       const { codigo, titulo, status } = req.body;
-      const categoria = await Categoria.create({ codigo: codigo, titulo: titulo, status: status });
+      const categoria = await Categoria.create({ 
+        codigo: codigo, 
+        titulo: titulo, 
+        status: status 
+      });
 
       return res.status(200).json(categoria);
     } catch (error) {
@@ -41,7 +45,7 @@ module.exports = {
       const id = req.params.id;
       const data = req.body;
 
-      if(data.constructor === Object && Object.keys(data).length === 0) {
+      if (data.constructor === Object && Object.keys(data).length === 0) {
         throw new Error("Sem dados para atualizar a categoria!");
       }
 
@@ -72,5 +76,5 @@ module.exports = {
     } catch (error) {
       return res.status(400).json({ error: error.message });
     }
-  }
+  },
 };
