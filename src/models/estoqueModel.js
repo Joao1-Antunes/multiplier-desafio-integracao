@@ -11,7 +11,7 @@ const Estoque = db.sequelize.define("estoque", {
     type: db.DataTypes.INTEGER,
   },
   reserva: {
-    type: db.DataTypes.STRING,
+    type: db.DataTypes.INTEGER,
   },
   status: {
     type: db.DataTypes.INTEGER,

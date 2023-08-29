@@ -1,7 +1,7 @@
 const Produto = require("../models/produtoModel");
 const Estoque = require("../models/estoqueModel");
 
-module.exports = { 
+module.exports = {
   async getProduto(req, res) {
     try {
       const produto = await Produto.findAll();

@@ -21,7 +21,7 @@ afterEach(() => {
 
 describe("produto", () => {
   describe("GET /api/produtos, getProduto", () => {
-    it("should get produtos and return 200 status", async () => {
+    it("should get all produtos and return 200 status", async () => {
       const mockProdutos = [
         {
           id: 1,

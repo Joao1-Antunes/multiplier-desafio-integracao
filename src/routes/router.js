@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const categoriaController = require("../controllers/categoriaController");
 const produtoController = require("../controllers/produtoController");
+const estoqueController = require("../controllers/estoqueController");
 
 // endpoints categoria
 router.get("/categorias",categoriaController.getCategorias);
@@ -16,5 +17,10 @@ router.get("/produtos/:id", produtoController.getProdutoById);
 router.post("/produtos", produtoController.createProduto);
 router.patch("/produtos/:id", produtoController.patchProduto);
 router.delete("/produtos/:id", produtoController.deleteProduto);
+
+// endpoints estoque
+router.get("/produtos/:id/estoque", estoqueController.getEstoque);
+router.patch("/produtos/:id/estoque", estoqueController.patchEstoque);
+router.delete("/produtos/:id/estoque", estoqueController.deleteEstoque);
 
 module.exports = router;
